@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="RU">
+    <head>
+      <meta charset="UTF-8">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <img class="logo" src="images/logo.png" alt="Изображение не подгрузилось...">
+
+        <form>
+            <div class="question">
+              <input type="text" class="questionContainer" id="questionContainer" placeholder="Что вам подсказать?">
+            </div>
+            <button type="submit" class="submitButton" id="submitButton">Найти</button>
+          </form>
+
+          <div class="answerContainer" id="answerContainer" style="display: none;">
+            <div class="answerBox">
+              <p id="answerText">Здесь появится ответ...</p>
+            </div>
+          </div>
+
+          <script>
+            document.getElementById('submitButton').addEventListener('click', function(e) {
+              e.preventDefault();
+              const question = document.getElementById('questionContainer').value;
+              const answerContainer = document.getElementById('answerContainer');
+              const answerText = document.getElementById('answerText');
+              if (question.trim() === '') {
+                answerText.textContent = 'Пожалуйста, введите вопрос!';
+                answerContainer.style.display = 'block';
+                answerContainer.classList.add('show');
+                return;
+              }
+              
+              // загрузка
+              answerText.textContent = 'Ищем ответ...';
+              answerContainer.style.display = 'block';
+              
+              // заменить на реальный API
+              const answers = [
+                "Согласно моим данным, теневое правительство ПЛАВИТ ваш мозг через сигналы спутников!",
+                "К сожалению, все голуби на улице на самом деле правительственные дроны-разведичики, созданные, чтобы за нами следить...",
+                "Рекомендую обратиться к психотерапевту.",
+                "Мой анализ показывает, что Украина - нелигитимное государство."
+              ];
+              const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+              answerText.textContent = randomAnswer;
+            });
+
+            // сброс формы
+            document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            form.reset(); });
+          </script>
+    </body>
+</html>
